@@ -12,8 +12,15 @@ class ToDoListViewController: UITableViewController {
 
     
 var itemList = ["learn","practice","try"]
+    
+    let defaults = UserDefaults.standard
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        if let items = defaults.value(forKey: "todoItemList") as? [String]{
+            itemList = items
+        }
        
     }
    // table view delegate methods
@@ -46,6 +53,7 @@ var itemList = ["learn","practice","try"]
       let alert =  UIAlertController(title: "Add new ToDo item", message: "", preferredStyle:.alert )
         let action = UIAlertAction(title: "Add", style: .default) { (action) in
             self.itemList.append(String(textfield.text!))
+            self.defaults.set(self.itemList, forKey: "todoItemList")
             self.tableView.reloadData()
         }
         let cancelAction = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
