@@ -16,7 +16,7 @@ var itemList = ["learn","practice","try"]
         super.viewDidLoad()
        
     }
-
+   // table view delegate methods
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return itemList.count
     }
@@ -39,6 +39,26 @@ var itemList = ["learn","practice","try"]
         tableView.deselectRow(at: indexPath, animated: true)
     }
     
+    // bar button item
+    @IBAction func addButtonPressed(_ sender: UIBarButtonItem) {
+        
+        var textfield = UITextField()
+      let alert =  UIAlertController(title: "Add new ToDo item", message: "", preferredStyle:.alert )
+        let action = UIAlertAction(title: "Add", style: .default) { (action) in
+            self.itemList.append(String(textfield.text!))
+            self.tableView.reloadData()
+        }
+        let cancelAction = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
+        alert.addAction(cancelAction)
+        alert.addAction(action)
+        alert.addTextField { (alertTextField) in
+            alertTextField.placeholder = "Create new item"
+            textfield = alertTextField
+            
+        }
+        
+        present(alert, animated: true, completion: nil)
+    }
     
 }
 
