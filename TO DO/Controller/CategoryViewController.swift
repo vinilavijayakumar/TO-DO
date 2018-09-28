@@ -8,6 +8,7 @@
 
 import UIKit
 import CoreData
+import SwipeCellKit
 
 class CategoryViewController: UITableViewController {
 
@@ -21,7 +22,11 @@ class CategoryViewController: UITableViewController {
 
     // MARK: - Table view data source
 
-  
+//    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+//        let cell = tableView.dequeueReusableCell(withIdentifier: "Cell") as! SwipeTableViewCell
+//        cell.delegate = self
+//        return cell
+//    }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         
@@ -103,3 +108,4 @@ class CategoryViewController: UITableViewController {
         tableView.reloadData()
     }
 }
+
